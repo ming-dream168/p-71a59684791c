@@ -144,9 +144,9 @@ section{padding:0 18px;margin-top:28px}
 <script>
 /* ======== 需要修改的信息都在这里 ======== */
 var CONFIG = {
-  time:    "2026年10月【待定】日 【待定】:00",   // 活动时间
-  place:   "新辰临港中心",                         // 地点名称
-  address: "上海市浦东新区南汇新城镇紫杉路158号",  // 详细地址
+  time:    "2026年10月【待定】日 13:00-16:00",     // 活动时间
+  place:   "新辰临港中心 C3-5F",                   // 地点名称
+  address: "上海市临港新片区水芸北路9弄2号",        // 详细地址
   traffic: "地铁16号线滴水湖站1号口，步行约300米", // 交通提示
   // 坐标（可选，填了导航更精准）。在高德地图上搜索地点 → 分享，可拿到经纬度
   lng: "", lat: ""
@@ -174,17 +174,17 @@ TEAMS.forEach(function(t,i){
   box.appendChild(d);
 });
 
-var name = encodeURIComponent(CONFIG.place), addr = encodeURIComponent(CONFIG.address);
+var name = encodeURIComponent(CONFIG.place), addr = encodeURIComponent(CONFIG.address), poi = encodeURIComponent("新辰临港中心");
 var hasPos = CONFIG.lng && CONFIG.lat;
 document.getElementById("btnAmap").href = hasPos
   ? "https://uri.amap.com/marker?position="+CONFIG.lng+","+CONFIG.lat+"&name="+name+"&src=invite&coordinate=gaode&callnative=1"
-  : "https://uri.amap.com/search?keyword="+name+"&city=310000&src=invite&callnative=1";
+  : "https://uri.amap.com/search?keyword="+poi+"&city=310000&src=invite&callnative=1";
 document.getElementById("btnBaidu").href = hasPos
   ? "https://api.map.baidu.com/marker?location="+CONFIG.lat+","+CONFIG.lng+"&title="+name+"&content="+addr+"&coord_type=gcj02&output=html&src=invite"
   : "https://api.map.baidu.com/geocoder?address="+addr+"&output=html&src=invite";
 document.getElementById("btnQQ").href = hasPos
   ? "https://apis.map.qq.com/uri/v1/marker?marker=coord:"+CONFIG.lat+","+CONFIG.lng+";title:"+name+";addr:"+addr+"&referer=invite"
-  : "https://apis.map.qq.com/uri/v1/search?keyword="+name+"&region=上海&referer=invite";
+  : "https://apis.map.qq.com/uri/v1/search?keyword="+poi+"&region=上海&referer=invite";
 document.getElementById("mapBox").onclick = function(){ location.href = document.getElementById("btnAmap").href; };
 
 function toast(msg){var t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(function(){t.classList.remove("show")},1600);}
